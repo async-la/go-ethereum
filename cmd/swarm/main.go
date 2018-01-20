@@ -48,7 +48,7 @@ import (
 	"github.com/ethereum/go-ethereum/rpc"
 	"github.com/ethereum/go-ethereum/swarm"
 	bzzapi "github.com/ethereum/go-ethereum/swarm/api"
-
+	swarmParams "github.com/ethereum/go-ethereum/swarm/params"
 	"gopkg.in/urfave/cli.v1"
 )
 
@@ -193,7 +193,7 @@ var defaultNodeConfig = node.DefaultConfig
 // This init function sets defaults so cmd/swarm can run alongside geth.
 func init() {
 	defaultNodeConfig.Name = clientIdentifier
-	defaultNodeConfig.Version = params.VersionWithCommit(gitCommit)
+	defaultNodeConfig.Version = swarmParams.VersionWithCommit(gitCommit)
 	defaultNodeConfig.P2P.ListenAddr = ":30399"
 	defaultNodeConfig.IPCPath = "bzzd.ipc"
 	// Set flag defaults for --help display.
@@ -423,7 +423,7 @@ func main() {
 
 func version(ctx *cli.Context) error {
 	fmt.Println(strings.Title(clientIdentifier))
-	fmt.Println("Version:", params.Version)
+	fmt.Println("Version:", swarmParams.Version)
 	if gitCommit != "" {
 		fmt.Println("Git Commit:", gitCommit)
 	}
